@@ -22,7 +22,6 @@
 		6C6FB11229FBBC800021CF64 /* NetworkReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6FB11129FBBC800021CF64 /* NetworkReachabilityHelper.swift */; };
 		6C7733792A0DEFD60095A69D /* ZoomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7733782A0DEFD50095A69D /* ZoomImageView.swift */; };
 		6C77337B2A0E304F0095A69D /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C77337A2A0E304E0095A69D /* Image.swift */; };
-		6C77337E2A0F305C0095A69D /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 6C77337D2A0F305C0095A69D /* SwiftUIX */; };
 		6C81849E29C06C7A00FDEF8D /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C81849D29C06C7A00FDEF8D /* AlbumDetailView.swift */; };
 		6C8184A029C0A2E600FDEF8D /* AlbumDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C81849F29C0A2E600FDEF8D /* AlbumDetail.swift */; };
 		6C8184A229C0A41A00FDEF8D /* AlbumDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8184A129C0A41A00FDEF8D /* AlbumDetailViewModel.swift */; };
@@ -68,7 +67,6 @@
 				6C6C188929CD977F00F2563B /* Alamofire in Frameworks */,
 				6CB9F99329CB17EF000FE1EE /* SwiftUIPullToRefresh in Frameworks */,
 				6C434AED29AF719F001C4B48 /* Kingfisher in Frameworks */,
-				6C77337E2A0F305C0095A69D /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +194,6 @@
 				6C434AEC29AF719F001C4B48 /* Kingfisher */,
 				6CB9F99229CB17EF000FE1EE /* SwiftUIPullToRefresh */,
 				6C6C188829CD977F00F2563B /* Alamofire */,
-				6C77337D2A0F305C0095A69D /* SwiftUIX */,
 			);
 			productName = SwiftHttp;
 			productReference = 6C504F7429AB1E1900809724 /* SwiftHttp.app */;
@@ -230,7 +227,6 @@
 				6C434AEB29AF719F001C4B48 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				6CB9F99129CB17EE000FE1EE /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */,
 				6C6C188729CD977F00F2563B /* XCRemoteSwiftPackageReference "Alamofire" */,
-				6C77337C2A0F305A0095A69D /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 6C504F7529AB1E1900809724 /* Products */;
 			projectDirPath = "";
@@ -502,14 +498,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		6C77337C2A0F305A0095A69D /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.4;
-			};
-		};
 		6CB9F99129CB17EE000FE1EE /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/globulus/swiftui-pull-to-refresh";
@@ -530,11 +518,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6C6C188729CD977F00F2563B /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		6C77337D2A0F305C0095A69D /* SwiftUIX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6C77337C2A0F305A0095A69D /* XCRemoteSwiftPackageReference "SwiftUIX" */;
-			productName = SwiftUIX;
 		};
 		6CB9F99229CB17EF000FE1EE /* SwiftUIPullToRefresh */ = {
 			isa = XCSwiftPackageProductDependency;
