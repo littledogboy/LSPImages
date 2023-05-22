@@ -53,7 +53,7 @@ struct HomeView: View {
                      }
                     .padding(EdgeInsets(top: 8,
                                         leading: 0,
-                                        bottom: 8,
+                                        bottom: 0,
                                         trailing: 0))
                     .background(Color(hex: "#F0F0F0"))
                 }

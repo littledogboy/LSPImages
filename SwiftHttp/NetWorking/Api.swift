@@ -7,7 +7,7 @@
 
 import Foundation
 
-let serverDomain = "http://192.168.0.4:8080/"
+let serverDomain = "http://192.168.0.5:8080/"
 //let serverDomain = "http://localhost:8080/"
 let referer = "https://meirentu.cc/"
 
