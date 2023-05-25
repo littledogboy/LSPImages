@@ -18,6 +18,7 @@ struct GroupView: View {
         NavigationView {
             SideBar(viewModel: viewModel, selectedFolder: $selectedLabel, selectedItem: $selectedItem)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             if !hasLoaded {
                 self.viewModel.load()

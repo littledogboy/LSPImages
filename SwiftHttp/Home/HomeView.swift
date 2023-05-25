@@ -28,6 +28,7 @@ struct HomeView: View {
             NavigationView {
                 content
             }
+            .navigationViewStyle(StackNavigationViewStyle())
         } else {
             content
         }
@@ -77,7 +78,7 @@ struct HomeView: View {
                     .background(Color(hex: "#F0F0F0"))
                 }
                 .navigationBarHidden(menuItem == nil ? true : false)
-                .navigationBarTitle(menuItem?.title ?? "", displayMode: .automatic)
+                .navigationBarTitle(menuItem?.title ?? "", displayMode: .inline)
             }
     }
 }

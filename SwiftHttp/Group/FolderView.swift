@@ -22,6 +22,6 @@ struct FolderView: View {
                 }
             }
         }
-        .navigationTitle(title)
+        .navigationBarTitle(title, displayMode: .inline)
     }
 }

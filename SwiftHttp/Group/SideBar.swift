@@ -26,6 +26,6 @@ struct SideBar: View {
             }
         }
         .listStyle(SidebarListStyle())
-        .navigationBarTitle("精品全集", displayMode: .automatic)
+        .navigationBarTitle("精品全集", displayMode: .inline)
     }
 }
