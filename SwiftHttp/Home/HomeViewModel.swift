@@ -88,7 +88,12 @@ class HomeViewModel:LoadableObject, ObservableObject {
         
         var urlComp = URLComponents(string: desURL)
         let urlQueryItems = [URLQueryItem(name: "page", value: String(nextPage))]
-        urlComp?.queryItems = urlQueryItems
+        if urlComp?.queryItems != nil {
+            urlComp?.queryItems! += urlQueryItems
+        } else {
+            urlComp?.queryItems = urlQueryItems
+        }
+        
         let url = urlComp?.url
         let request = URLRequest(url: url!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 10)
         
