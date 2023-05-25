@@ -53,14 +53,15 @@ struct HomeCell: View {
                 
                 VStack(alignment: .leading, spacing: 3) {
                     // title
-                    let titlePadding = 4.0
+                    let titleVPadding = 4.0
+                    let titleHPadding = 3.0
                     if let title = item?.title {
                         Text(title)
-                            .padding(EdgeInsets(top: titlePadding,
-                                                leading: 0,
-                                                bottom: titlePadding,
-                                                trailing: 0))
-                            .frame(width:geo.size.width)
+                            .padding(EdgeInsets(top: titleVPadding,
+                                                leading: titleHPadding,
+                                                bottom: titleVPadding,
+                                                trailing: titleHPadding))
+                            .frame(width:geo.size.width, alignment: .leading)
                             .multilineTextAlignment(.leading)
                             .background(.white)
                             .foregroundColor(Color(hex: "#666666"))
