@@ -8,8 +8,22 @@
 import SwiftUI
 
 struct GroupView: View {
+    @StateObject private var viewModel = GroupViewModel()
+    @State private var selectedLabel: String?
+    @State private var selectedItem: HomeItem?
+    
+    @State var hasLoaded = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            SideBar(viewModel: viewModel, selectedFolder: $selectedLabel, selectedItem: $selectedItem)
+        }
+        .onAppear {
+            if !hasLoaded {
+                self.viewModel.load()
+                self.hasLoaded = true
+            }
+        }
     }
 }
 

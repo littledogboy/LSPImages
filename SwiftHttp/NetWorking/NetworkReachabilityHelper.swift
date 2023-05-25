@@ -13,7 +13,7 @@ final class NetworkReachabilityHelper {
     static let shared = NetworkReachabilityHelper()
     
     private enum Constants {
-        static let host = "192.168.0.5:8080/ping"
+        static let host = kPing
     }
     
     var reachability = NetworkReachabilityManager(host: Constants.host)

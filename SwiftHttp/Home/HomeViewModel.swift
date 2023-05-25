@@ -9,9 +9,15 @@ import SwiftUI
 import Combine
 
 class HomeViewModel:LoadableObject, ObservableObject {
+    var desURL: String
+
     @Published private(set) var state = LoadingState<[HomeItem]>.idle
-    var currentPage = 1
-    var cancellable: AnyCancellable?
+    private var currentPage = 1
+    private var cancellable: AnyCancellable?
+    
+    init(desURL: String) {
+        self.desURL = desURL
+    }
 
     func load() {
         
@@ -22,7 +28,7 @@ class HomeViewModel:LoadableObject, ObservableObject {
             
             dPrint(item: "检查服务器健康")
             do {
-                let (_, response) = try await URLSession.shared.data(for: URLRequest(url: URL(string: ping)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 3))
+                let (_, response) = try await URLSession.shared.data(for: URLRequest(url: URL(string:kPing)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 3))
                 if let httpResponse = response as? HTTPURLResponse,httpResponse.statusCode == 200 {
                     isServerON = true
                 }
@@ -32,7 +38,7 @@ class HomeViewModel:LoadableObject, ObservableObject {
             dPrint(item: "检查服务器检查完毕")
 
             dPrint(item: "服务器是否在线：\(isServerON), 进行下一步请求")
-            let url = URL(string: serverDomain)?.appendingPathComponent("home")
+            let url = URL(string: desURL)
             let request = URLRequest(url: url!, cachePolicy: isServerON ? .useProtocolCachePolicy : .returnCacheDataElseLoad, timeoutInterval: 10)
             do {
                 let (data, response) = try await URLSession.shared.data(for:request)
@@ -80,8 +86,7 @@ class HomeViewModel:LoadableObject, ObservableObject {
     func loadMore() {
         let nextPage = currentPage + 1
         
-        let path = "home"
-        var urlComp = URLComponents(string: serverDomain + path)
+        var urlComp = URLComponents(string: desURL)
         let urlQueryItems = [URLQueryItem(name: "page", value: String(nextPage))]
         urlComp?.queryItems = urlQueryItems
         let url = urlComp?.url
@@ -114,7 +119,7 @@ class HomeViewModel:LoadableObject, ObservableObject {
     
     func reload() async {
         self.state = .loading
-        let url = URL(string: serverDomain)?.appendingPathComponent("home")
+        let url = URL(string: desURL)
         let request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
         do {
             let (data, _) = try await URLSession.shared.data(for:request)

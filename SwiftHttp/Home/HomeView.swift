@@ -10,12 +10,31 @@ import SwiftUIPullToRefresh
 
 
 struct HomeView: View {
-    @StateObject var vm = HomeViewModel()
+    var menuItem : HomeItem?
+    @StateObject private var vm: HomeViewModel
+    
+    init() {
+        self._vm = StateObject(wrappedValue: HomeViewModel(desURL: kHome))
+    }
+        
+    init(menuItem: HomeItem) {
+        self.menuItem = menuItem
+        let desURL = kGroup.addQueryItem(key: "href", value: menuItem.href ?? "")
+        self._vm = StateObject(wrappedValue: HomeViewModel(desURL: desURL))
+    }
     
     var body: some View {
-        AsyncContentView(source: vm) { recommends in
+        if self.menuItem == nil {
             NavigationView {
-                
+                content
+            }
+        } else {
+            content
+        }
+    }
+    
+    var content: some View {
+        AsyncContentView(source: vm) { recommends in
                 GeometryReader { geom in
                     
                     let radio = 402.0 / 268.0
@@ -57,9 +76,9 @@ struct HomeView: View {
                                         trailing: 0))
                     .background(Color(hex: "#F0F0F0"))
                 }
-                .navigationBarHidden(true)
+                .navigationBarHidden(menuItem == nil ? true : false)
+                .navigationBarTitle(menuItem?.title ?? "", displayMode: .automatic)
             }
-        }
     }
 }
 

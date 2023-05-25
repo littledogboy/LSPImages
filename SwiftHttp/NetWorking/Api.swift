@@ -7,8 +7,14 @@
 
 import Foundation
 
-let serverDomain = "http://192.168.0.5:8080/"
-//let serverDomain = "http://localhost:8080/"
-let referer = "https://meirentu.cc/"
+let kServerDomain = "http://192.168.0.4:8080/"
+//let kServerDomain = "http://localhost:8080/"
+let kReferer = "https://meirentu.cc/"
 
-let ping = serverDomain + "ping"
+let kPing = kServerDomain + "ping/"
+let kHome = kServerDomain + "home/"
+let kDetail = kServerDomain + "detail/"
+let kMenu = kServerDomain + "menuItems/"
+let kGroup = kServerDomain + "group/"
+
+

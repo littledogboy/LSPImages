@@ -21,7 +21,7 @@ struct HomeCell: View {
                     let url = URL(string: img)
                     let modifier = AnyModifier { request in
                         var r = request
-                        r.setValue(referer, forHTTPHeaderField: "referer")
+                        r.setValue(kReferer, forHTTPHeaderField: "referer")
                         return r
                     }
                     

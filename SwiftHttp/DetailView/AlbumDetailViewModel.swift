@@ -21,7 +21,7 @@ class AlbumDetailViewModel: ObservableObject {
         }
         
         let path = "detail"
-        var urlComp = URLComponents(string: serverDomain + path)
+        var urlComp = URLComponents(string: kServerDomain + path)
         let urlQueryItems = [URLQueryItem(name: "href", value: href)]
         urlComp?.queryItems = urlQueryItems
         let url = urlComp?.url
