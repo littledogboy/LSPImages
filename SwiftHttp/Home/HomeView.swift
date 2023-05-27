@@ -38,11 +38,11 @@ struct HomeView: View {
         AsyncContentView(source: vm) { recommends in
                 GeometryReader { geom in
                     
-                    let radio = 402.0 / 268.0
+                    let radio = 2.0 / 3.0
                     let spacing = 10.0
                     let hozionPadding = 5.0
                     let width = (geom.size.width - spacing - hozionPadding * 2) / 2.0
-                    let height = width * radio
+                    let height = width / radio
                     let columns = [GridItem(.fixed(width)), GridItem(.fixed(width))]
                     
                     

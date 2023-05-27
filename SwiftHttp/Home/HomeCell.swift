@@ -24,14 +24,14 @@ struct HomeCell: View {
                         r.setValue(kReferer, forHTTPHeaderField: "referer")
                         return r
                     }
-                    
+                    let radio = 2.0 / 3.0
                     KFImage.url(url)
                         .requestModifier(modifier)
                         .cacheOriginalImage()
                         .fade(duration: 0.25)
                         .cancelOnDisappear(true)
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .aspectRatio(radio, contentMode: .fit)
                 }
                 
                 // model
