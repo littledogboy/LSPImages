@@ -27,6 +27,7 @@ class AlbumDetailViewModel: NSObject, ObservableObject, URLSessionDataDelegate {
         let url = urlComp?.url
         let request = URLRequest(url: url!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
         let session = URLSession(configuration: .default, delegate: self as URLSessionDataDelegate, delegateQueue: OperationQueue.main)
+        self.checkCachedData(with: session.configuration.urlCache!, with: request)
         let dask = session.dataTask(with: request)
         dask.resume()
     }
@@ -41,7 +42,9 @@ class AlbumDetailViewModel: NSObject, ObservableObject, URLSessionDataDelegate {
 
         do {
             let modelObject = try JSONDecoder().decode(AlbumDetail.self, from: data)
-            self.albumDetail = modelObject
+            DispatchQueue.main.async {
+                self.albumDetail = modelObject
+            }
         } catch {
             dPrint(item: "数据解析出错, \(error.localizedDescription)")
         }
@@ -66,6 +69,22 @@ class AlbumDetailViewModel: NSObject, ObservableObject, URLSessionDataDelegate {
         } catch  {
             completionHandler(nil)
             dPrint(item: "缓存数据解析出错, \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: Other Logic
+    func checkCachedData(with cache: URLCache, with request: URLRequest) {
+        let cachedResponse = cache.cachedResponseForRequestByFollowingRedirects(request: request)
+        if let cachedResponse = cachedResponse {
+            do {
+                let modelObject = try JSONDecoder().decode(AlbumDetail.self, from: cachedResponse.data)
+                if (modelObject.images!.isEmpty) {
+                    /// remove empty image cache, so can re request
+                    cache.removeCachedResponse(for: request)
+                }
+            } catch  {
+                dPrint(item: "被检查缓存数据解析出错, \(error.localizedDescription)")
+            }
         }
     }
 }
