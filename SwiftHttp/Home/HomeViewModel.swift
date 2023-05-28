@@ -20,7 +20,6 @@ class HomeViewModel:LoadableObject, ObservableObject {
     }
 
     func load() {
-        
         self.state = .loading
         
         Task {
@@ -55,32 +54,6 @@ class HomeViewModel:LoadableObject, ObservableObject {
                 self.state = .failed(error)
             }
         }
-        
-         /*
-        let url: URL? = URL(string: serverDomain)?.appendingPathComponent("home")
-        let request: URLRequest = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
-        let dask = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                self.state = .failed(error)
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                self.state = .failed(URLError(.badServerResponse))
-                return
-            }
-            
-            if let data = data {
-                do {
-                    let decodeData = try JSONDecoder().decode(HomeData.self, from: data)
-                    self.state = .loaded(decodeData.recommends)
-                } catch {
-                    self.state = .failed(error)
-                }
-            }
-        }
-        dask.resume()
-          */
     }
     
     func loadMore() {
@@ -111,13 +84,10 @@ class HomeViewModel:LoadableObject, ObservableObject {
             .sink(receiveCompletion: {
                 print ("Received completion: \($0).")
             }, receiveValue: { homeData in
-                switch self.state {
-                case .loaded(let items):
+                if case .loaded(let items) = self.state {
                     let newArray: [HomeItem] = items + homeData.recommends
                     self.state = .loaded(newArray)
                     self.currentPage += 1
-                default:
-                    print("")
                 }
             })
     }

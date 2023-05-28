@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SideBar: View {
-    @ObservedObject var viewModel: GroupViewModel
+    var sections: [MenuSection]?
     @Binding var selectedFolder: String?
     @Binding var selectedItem: HomeItem?
     
     var body: some View {
         List {
-            if let sections = viewModel.sections {
+            if let sections = sections {
                 ForEach(sections) { section in
                     NavigationLink(destination: FolderView(title: section.title, items: section.items, selectedItem: $selectedItem),
                                    tag: section.title,

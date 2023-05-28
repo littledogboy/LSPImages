@@ -70,12 +70,16 @@ struct HomeView: View {
                                  }
                              }
                          }
+                         .padding(EdgeInsets(top: 8,
+                                             leading: 0,
+                                             bottom: 0,
+                                             trailing: 0))
+                         .background(Color(hex: "#F0F0F0"))
                      }
-                    .padding(EdgeInsets(top: 8,
-                                        leading: 0,
-                                        bottom: 0,
-                                        trailing: 0))
-                    .background(Color(hex: "#F0F0F0"))
+                     .padding(EdgeInsets(top: 0.1,
+                                         leading: 0,
+                                         bottom: 0,
+                                         trailing: 0))
                 }
                 .navigationBarHidden(menuItem == nil ? true : false)
                 .navigationBarTitle(menuItem?.title ?? "", displayMode: .inline)

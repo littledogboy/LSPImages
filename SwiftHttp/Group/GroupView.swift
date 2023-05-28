@@ -11,18 +11,11 @@ struct GroupView: View {
     @StateObject private var viewModel = GroupViewModel()
     @State private var selectedLabel: String?
     @State private var selectedItem: HomeItem?
-    
-    @State var hasLoaded = false
-    
+        
     var body: some View {
         NavigationView {
-            SideBar(viewModel: viewModel, selectedFolder: $selectedLabel, selectedItem: $selectedItem)
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear {
-            if !hasLoaded {
-                self.viewModel.load()
-                self.hasLoaded = true
+            AsyncContentView(source: viewModel) { sections in
+                SideBar(sections:sections , selectedFolder: $selectedLabel, selectedItem: $selectedItem)
             }
         }
     }
